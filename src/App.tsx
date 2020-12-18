@@ -2,20 +2,7 @@ import './App.css';
 import {Store} from './context/Store';
 import {IAction} from './context/interfaces';
 import {useContext, useEffect} from 'react';
-
-export interface IEpisode {
-    id: number,
-    name: string,
-    season: number,
-    number: number,
-    airdate: string,
-    airtime: string,
-    airstamp: string,
-    runtime: number,
-    image: { medium: string, original: string },
-    summary: string,
-    url: string
-}
+import { IEpisode } from './entities/IEpisode';
 
 function App(): JSX.Element {
     const {state, dispatch} = useContext(Store);

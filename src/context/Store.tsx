@@ -1,6 +1,6 @@
 import React, {createContext, useReducer} from 'react';
 import {IAction, IState} from './interfaces';
-import { IEpisode } from '../App';
+import { IEpisode } from '../entities/IEpisode';
 
 const initialState: IState = {
     episodes: [],
