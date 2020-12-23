@@ -1,5 +1,8 @@
 import React from 'react';
 import {IEpisode} from '../entities/IEpisode';
+import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const EpisodesList = (props: any): JSX.Element[] => {
     const {episodes, toggleFav, favourites, store} = props;
@@ -16,8 +19,8 @@ const EpisodesList = (props: any): JSX.Element[] => {
                         <button type='button' onClick={() => toggleFav(state, dispatch, episode)}>
                             {
                                 favourites.includes(episode)
-                                    ? ' Remove heart '
-                                    : ' Give Heart'
+                                    ? <FontAwesomeIcon icon={solidHeart} color='#cc0000'/>
+                                    : <FontAwesomeIcon icon={regularHeart} color='#cc0000'/>
                             }
                         </button>
                     </section>
