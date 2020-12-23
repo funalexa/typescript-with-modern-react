@@ -2,7 +2,8 @@ import React from 'react';
 import {IEpisode} from '../entities/IEpisode';
 
 const EpisodesList = (props: any): JSX.Element[] => {
-    const {episodes, toggleFav, favourites} = props;
+    const {episodes, toggleFav, favourites, store} = props;
+    const {state, dispatch} = store;
 
     return episodes.map(
         (episode: IEpisode) => {
@@ -12,7 +13,7 @@ const EpisodesList = (props: any): JSX.Element[] => {
                     <div> {episode.name} </div>
                     <section style={{display: 'flex', justifyContent: 'space-between' }}>
                         <div> Season: {episode.season} Number: {episode.number} </div>
-                        <button type='button' onClick={() => toggleFav(episode)}>
+                        <button type='button' onClick={() => toggleFav(state, dispatch, episode)}>
                             {
                                 favourites.includes(episode)
                                     ? ' Remove heart '

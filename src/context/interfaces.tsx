@@ -1,9 +1,13 @@
+import {IEpisode} from '../entities/IEpisode';
+
+export type Dispatch = React.Dispatch<IAction>
+
 export interface IState {
-    episodes: [],
-    favourites: []
+    episodes: Array<IEpisode>,
+    favourites: Array<IEpisode>
 }
 
 export interface IAction {
     type: string,
-    payload: any
+    payload: number
 }
