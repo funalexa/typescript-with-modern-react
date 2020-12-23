@@ -8,7 +8,7 @@ const EpisodesList = (props: any): JSX.Element[] => {
     const {episodes, toggleFav, favourites, store} = props;
     const {state, dispatch} = store;
 
-    return episodes.map(
+    return episodes.length > 0 ? episodes.map(
         (episode: IEpisode) => {
             return (
                 <section key={episode.id} className='episode-box'>
@@ -27,7 +27,7 @@ const EpisodesList = (props: any): JSX.Element[] => {
                 </section>
             );
         }
-    )
+    ) : <div> No episodes found! </div>
 }
 
 export default EpisodesList;

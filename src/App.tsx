@@ -16,6 +16,7 @@ function App(props: any): JSX.Element {
                 </div>
                 <div>
                     <Link to='/'> Home </Link>
+                    |
                     <Link to='favs'>
                         {(state.favourites.length <= 1)
                             ? (<> favourite: {state.favourites.length} </>)

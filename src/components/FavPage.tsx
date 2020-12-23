@@ -1,5 +1,5 @@
 import React, {Fragment, Suspense, useContext} from 'react';
-
+import Loading from './Loading';
 import {Store} from '../context/Store';
 import {toggleFav} from '../Actions';
 import {IEpisodeProps} from '../entities/IEpisode';
@@ -19,7 +19,7 @@ const FavPage = () => {
 
     return (
         <Fragment>
-            <Suspense fallback={<div> loading... </div>}>
+            <Suspense fallback={<Loading/>}>
                 <section className='episode-layout'>
                     <EpisodesList {...episodeProps}/>
                 </section>

@@ -2,6 +2,7 @@ import React, {Fragment, Suspense, useContext, useEffect} from 'react';
 import {Store} from '../context/Store';
 import {IEpisodeProps} from '../entities/IEpisode';
 import {fetchData, toggleFav} from '../Actions';
+import Loading from './Loading';
 
 const EpisodesList = React.lazy<any>(() => import('./EpisodesList'));
 
@@ -22,7 +23,7 @@ const HomePage = (): JSX.Element => {
 
     return (
         <Fragment>
-            <Suspense fallback={<div> loading... </div>}>
+            <Suspense fallback={<Loading/>}>
                 <section className='episode-layout'>
                     <EpisodesList {...episodeProps}/>
                 </section>
