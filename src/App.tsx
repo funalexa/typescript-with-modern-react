@@ -1,9 +1,11 @@
 import './App.css';
 import {Store} from './context/Store';
 import {IAction} from './context/interfaces';
-import {useContext, useEffect} from 'react';
+import React, {Suspense, useContext, useEffect} from 'react';
 import {IEpisode} from './entities/IEpisode';
 import {ADD_FAV, FETCH_DATA, REMOVE_FAV} from './context/types';
+
+const EpisodesList = React.lazy<any>(() => import('./components/EpisodesList'));
 
 function App(): JSX.Element {
     const {state, dispatch} = useContext(Store);
@@ -35,7 +37,12 @@ function App(): JSX.Element {
                 payload: episode.id
             });
         }
+    }
 
+    const episodeProps = {
+        episodes: state.episodes,
+        toggleFav: toggleFav,
+        favourites: state.favourites
     }
 
     return (
@@ -50,30 +57,12 @@ function App(): JSX.Element {
                         ? (<> favourite: {state.favourites.length} </>)
                         : (<> favourites: {state.favourites.length} </>)}
                 </div>
-
             </header>
-            <section className='episode-layout'>
-                {state.episodes.map(
-                    (episode: IEpisode) => {
-                        return (
-                            <section key={episode.id} className='episode-box'>
-                                <img src={episode.image.medium} alt={`Emily: ${episode.name}`}/>
-                                <div> {episode.name} </div>
-                                <section>
-                                    <div> Season: {episode.season} Number: {episode.number} </div>
-                                    <button type='button' onClick={() => toggleFav(episode)}>
-                                        {
-                                            state.favourites.includes(episode)
-                                                ? ' Remove heart '
-                                                : ' Give Heart'
-                                        }
-                                    </button>
-                                </section>
-                            </section>
-                        );
-                    }
-                )}
-            </section>
+            <Suspense fallback={<div> loading... </div>}>
+                <section className='episode-layout'>
+                    <EpisodesList {...episodeProps}/>
+                </section>
+            </Suspense>
         </div>
     );
 }
